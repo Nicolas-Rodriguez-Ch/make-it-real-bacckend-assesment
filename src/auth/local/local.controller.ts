@@ -25,7 +25,8 @@ export const loginController = async (
 
     const { user_id: id } = user;
     const token = signToken({ id });
-    res.status(201).send({message : 'User loged in successfully',  email, token});
+    res.setHeader('Authorization', `Bearer ${token}`);
+    res.status(201).send({message : 'User loged in successfully', token});
 
   } catch (error: any) {
     console.error(error);
