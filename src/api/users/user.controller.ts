@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { Request, Response} from 'express';
 import bcrypt from 'bcrypt';
 import { createUser } from './user.services';
+import { signToken } from '../../auth/auth.services';
 
 const prisma = new PrismaClient;
 
@@ -23,7 +24,8 @@ export const signupController = async (
 
     const encPass = await bcrypt.hash(req.body.password, 10);
     const { user_id: id } = await createUser({ ...req.body, password: encPass });
-    res.status(201).send({message : 'User created successfully', id});
+    const token = signToken({ id });
+    res.status(201).send({message : 'User created successfully', token});
 
   } catch (error) {
     if (error.message === 'Email already exists') {
