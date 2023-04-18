@@ -1,3 +1,7 @@
+export type CreateFavListInput = {
+  name: string;
+};
+
 export type FavList = {
   favList_id: string;
   name: string;

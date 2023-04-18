@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { FavList } from './favsTypes';
-export type CreateFavListInput = {
-  name: string;
-};
+import {
+  CreateFavListInput,
+  FavList
+} from './favsTypes';
 const prisma = new PrismaClient();
 
 
@@ -17,10 +17,14 @@ export const getAllFavLists = async ( user_id: string ): Promise<FavList[]> => {
   });
 }
 
-export const createFavList = async (user_id: string, input: CreateFavListInput): Promise<FavList> => {
+export const createFavList = async (
+  user_id: string,
+  input: CreateFavListInput
+): Promise<FavList> => {
+  const { name } = input;
   return await prisma.favList.create({
     data: {
-      name: input.name,
+      name,
       user: {
         connect: {
           user_id
