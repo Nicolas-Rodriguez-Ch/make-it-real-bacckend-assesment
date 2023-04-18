@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import {
   createFavList,
+  deleteFavList,
   getAllFavLists,
   getFavListById
 } from './favs.services';
@@ -44,7 +45,7 @@ export const createFavListController = async (
 
 // get single fav list
 export const getFavListByIdController = async (
-  req: Request & AuthUser,
+  req: Request,
   res: Response
 ) => {
   try {
@@ -54,6 +55,28 @@ export const getFavListByIdController = async (
     if (favList) {
       const favListWithoutUserId = removeUserIdFromFavList(favList);
       res.status(200).json({ message: 'Fav list found!', data: favListWithoutUserId });
+    } else {
+      res.status(404).json({ message: 'Fav list not found!' });
+    }
+
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// delete single fav List
+
+export const deleteFavListController = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { id } = req.params;
+    const favList = await deleteFavList(id);
+
+    if (favList) {
+      const favListWithoutUserId = removeUserIdFromFavList(favList);
+      res.status(200).json({ message: 'Fav list deleted successfully', data: favListWithoutUserId });
     } else {
       res.status(404).json({ message: 'Fav list not found!' });
     }
