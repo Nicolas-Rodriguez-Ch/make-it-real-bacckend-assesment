@@ -1,4 +1,4 @@
-# Backend Assessment
+# Backend Assesment
 
 This is a simple backend application that allows you to manage your favorite lists. With this API, you can create a user, log in, and perform various actions on your favorite lists, such as creating, viewing, and deleting them. The data is stored in a PostgreSQL database.
 
