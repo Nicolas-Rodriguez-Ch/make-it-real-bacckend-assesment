@@ -6,7 +6,7 @@ export type CreateFavListInput = {
 const prisma = new PrismaClient();
 
 
-export const getAllFavList = async ( user_id: string ) : Promise<FavList[]> => {
+export const getAllFavLists = async ( user_id: string ): Promise<FavList[]> => {
   return await prisma.favList.findMany({
     where: {
       user_id
@@ -17,7 +17,7 @@ export const getAllFavList = async ( user_id: string ) : Promise<FavList[]> => {
   });
 }
 
-export const createFavList = async (user_id: string, input: CreateFavListInput) : Promise<FavList> => {
+export const createFavList = async (user_id: string, input: CreateFavListInput): Promise<FavList> => {
   return await prisma.favList.create({
     data: {
       name: input.name,
@@ -31,4 +31,23 @@ export const createFavList = async (user_id: string, input: CreateFavListInput) 
       favs: true
     }
   });
-} 
+}
+
+export const getFavListById = (favList_id: string) => {
+  return prisma.favList.findUnique({
+    where: {
+      favList_id
+    },
+    include: {
+      favs: true
+    }
+  });
+}
+
+export const deleteFavList = (favList_id: string) => {
+  return prisma.favList.delete({
+    where: {
+      favList_id
+    }
+  });
+}
