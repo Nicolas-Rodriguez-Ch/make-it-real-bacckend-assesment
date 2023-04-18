@@ -1,12 +1,12 @@
 import { PrismaClient } from '@prisma/client';
 import {
-  CreateFavListInput,
-  FavList
+  createFavListInput,
+  favList
 } from './favsTypes';
 const prisma = new PrismaClient();
 
 
-export const getAllFavLists = async ( user_id: string ): Promise<FavList[]> => {
+export const getAllFavLists = async ( user_id: string ): Promise<favList[]> => {
   return await prisma.favList.findMany({
     where: {
       user_id
@@ -19,8 +19,8 @@ export const getAllFavLists = async ( user_id: string ): Promise<FavList[]> => {
 
 export const createFavList = async (
   user_id: string,
-  input: CreateFavListInput
-): Promise<FavList> => {
+  input: createFavListInput
+): Promise<favList> => {
   const { name } = input;
   return await prisma.favList.create({
     data: {

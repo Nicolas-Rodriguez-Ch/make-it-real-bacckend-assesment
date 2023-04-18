@@ -34,3 +34,7 @@ When creating a new user, make sure to use a strong password that meets the foll
 You can now use an API client like Postman or a frontend application to interact with the API.
 
 Enjoy managing your favorite lists!
+
+## License
+
+This project is [MIT licensed](https://opensource.org/licenses/MIT).
