@@ -19,6 +19,11 @@ export const isAuthenticated = (
       throw new Error('Your session has expired, please log in again');
     }
 
+    const decodedToken = verifyToken(token);
+    if (!decodedToken) {
+      throw new Error('Invalid token, please log in again');
+    }
+  
     const { id } = verifyToken(token) as DecodedToken;
     req.user = id;
     next();
