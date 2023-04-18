@@ -1,5 +1,4 @@
 import { PrismaClient, Prisma } from '@prisma/client';
-import bcrypt from 'bcrypt';
 
 interface UserInput {
   email: string;

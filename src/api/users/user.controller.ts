@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response} from 'express';
 import bcrypt from 'bcrypt';
+import validator from 'validator';
 import { createUser } from './user.services';
 import { signToken } from '../../auth/auth.services';
 
@@ -13,8 +14,15 @@ export const signupController = async (
   try {
     const {
       email,
+      password,
       favListName
     } = req.body;
+
+    if (!validator.isStrongPassword(password)) {
+      res.status(400).json({ message: 'Password is not strong enough' });
+      return;
+    }
+
     const existingUser = await prisma.users.findUnique({ where: { email } });
 
     if (existingUser) {
