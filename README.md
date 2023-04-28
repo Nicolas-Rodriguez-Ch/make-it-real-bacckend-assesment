@@ -51,11 +51,16 @@ Enjoy managing your favorite lists!
 
 ### Favorite Lists Routes
 
-- `GET /api/favs`: Get all favorite lists for the authenticated user. Requires a valid JWT in the `Authorization` header.
-- `GET /api/favs/:id`: Get a specific favorite list by ID. Requires a valid JWT in the `Authorization` header.
-- `POST /api/favs`: Create a new favorite list for the authenticated user. Requires a valid JWT in the `Authorization` header and a JSON body with a `name` field.
-- `DELETE /api/favs/:id`: Delete a specific favorite list by ID. Requires a valid JWT in the `Authorization` header, also deletes related items in the list.
-- `POST /api/favs/add-item`: Add an item to a specific favorite list by providing the list name. Requires a valid JWT in the `Authorization` header and a JSON body with `item` and `listName` fields.
+| Route                         | HTTP Verb | Middleware   | Description                                                                                               |
+|-------------------------------|-----------|--------------|-----------------------------------------------------------------------------------------------------------|
+| https://nrch-backend-assesment.onrender.com/api/healthcheck            | GET       | -            | Check if the server is running fine.                                                                      |
+| https://nrch-backend-assesment.onrender.com/api/users/signup             | POST      | -            | Register a new user. Requires a JSON body with `email`, `password`, and `confirmPassword` fields.        |
+| https://nrch-backend-assesment.onrender.com/auth/local/login             | POST      | -            | Log in an existing user. Requires a JSON body with `email` and `password` fields.                         |
+| https://nrch-backend-assesment.onrender.com/api/favs                     | GET       | isAuthenticated          | Get all favorite lists for the authenticated user. Requires a valid JWT in the `Authorization` header.   |
+| https://nrch-backend-assesment.onrender.com/api/favs/:id                 | GET       | isAuthenticated          | Get a specific favorite list by ID. Requires a valid JWT in the `Authorization` header.                  |
+| /https://nrch-backend-assesment.onrender.com/api/favs                     | POST      | isAuthenticated          | Create a new favorite list for the authenticated user. Requires a valid JWT and a JSON body with `name`. |
+| https://nrch-backend-assesment.onrender.com/api/favs/:id                 | DELETE    | isAuthenticated          | Delete a specific favorite list by ID. Requires a valid JWT in the `Authorization` header.               |
+| https://nrch-backend-assesment.onrender.com/api/favs/add-item            | POST      | isAuthenticated          | Add an item to a specific favorite list by providing the list name. Requires a valid JWT and a JSON body with `item` and `listName` fields. |
 
 
 ## License
