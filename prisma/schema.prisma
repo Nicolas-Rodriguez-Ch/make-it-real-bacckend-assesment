@@ -27,7 +27,7 @@ model fav {
   createdAt               DateTime             @default(now())
   updatedAt               DateTime             @updatedAt
   favList_id              String
-  favList                 favList              @relation(fields: [favList_id], references: [favList_id])
+  favList                 favList              @relation(fields: [favList_id], references: [favList_id], onDelete: Cascade)
 }
 
 model favList {
