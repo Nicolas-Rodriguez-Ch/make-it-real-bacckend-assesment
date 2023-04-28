@@ -35,7 +35,7 @@ export const signupController = async (
     const token = signToken({ id });
     res.status(201).send({message : 'User created successfully', token});
 
-  } catch (error) {
+  } catch (error: any) {
     if (error.message === 'Email already exists') {
       res.status(409).json({ message: error.message });
     } else {

@@ -19,7 +19,7 @@ export const createUser = async ( input: UserInput ) => {
       data: {
         email,
         password,
-        favList : favListName
+        favLists : favListName
           ? {
             create: {
               name: favListName,
