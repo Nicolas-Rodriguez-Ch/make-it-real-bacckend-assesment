@@ -15,3 +15,9 @@ export type favList = {
     updatedAt: Date;
   }[];
 };
+
+export type item = {
+  title: string,
+  description: string,
+  url: string
+}
